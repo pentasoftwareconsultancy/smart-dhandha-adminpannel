@@ -24,6 +24,7 @@ import SuperAdminDashboard, { SuperAdminSettings } from "./pages/SuperAdminDashb
 import PrivateRoute from "./router/PrivateRoute";
 import SuperAdminRoute from "./router/SuperAdminRoute"; // <-- IMPORT THE NEW ROUTE
 import DashboardLayout from "./layouts/DashboardLayout";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/forgotpassword" element={<ForgotPassword/>}/>
 
           {/* ================================== */}
           {/* Regular User Protected Routes    */}

@@ -43,24 +43,66 @@
 
 
 
+// import axios from "axios";
+
+// // 🔥 Change baseURL when deploying
+// const API = axios.create({
+//   baseURL: "http://localhost:5000/api/auth",
+//   // baseURL: "https://smartdhandha-backend-1.onrender.com/api/auth",
+// });
+
+// // ================= REGISTER =================
+// export const registerUser = async (userData) => {
+//   // userData: fullName, businessName, email, password
+//   const { data } = await API.post("/register", userData);
+//   return data;
+// };
+
+// // ================= LOGIN (EMAIL BASED) =================
+// export const loginUser = async (credentials) => {
+//   // credentials: { email, password }
+//   const { data } = await API.post("/login", credentials);
+
+//   if (data.token) {
+//     localStorage.setItem("authToken", data.token);
+//   }
+
+//   return data;
+// };
+
+// // ================= LOGOUT =================
+// export const logoutUser = () => {
+//   localStorage.removeItem("authToken");
+// };
+
+// // ================= GET TOKEN =================
+// export const getToken = () => {
+//   return localStorage.getItem("authToken");
+// };
+
+// // ================= CHECK AUTH =================
+// export const isAuthenticated = () => {
+//   return !!localStorage.getItem("authToken");
+// };
+
+
+
 import axios from "axios";
 
 // 🔥 Change baseURL when deploying
 const API = axios.create({
-//   baseURL: "http://localhost:5000/api/auth",
+  // baseURL: "http://localhost:5000/api/auth",
   baseURL: "https://smartdhandha-backend-1.onrender.com/api/auth",
 });
 
 // ================= REGISTER =================
 export const registerUser = async (userData) => {
-  // userData: fullName, businessName, email, password
   const { data } = await API.post("/register", userData);
   return data;
 };
 
-// ================= LOGIN (EMAIL BASED) =================
+// ================= LOGIN =================
 export const loginUser = async (credentials) => {
-  // credentials: { email, password }
   const { data } = await API.post("/login", credentials);
 
   if (data.token) {
@@ -83,4 +125,38 @@ export const getToken = () => {
 // ================= CHECK AUTH =================
 export const isAuthenticated = () => {
   return !!localStorage.getItem("authToken");
+};
+
+// ======================================================
+// 🔐 FORGOT PASSWORD FLOW
+// ======================================================
+
+// ================= SEND OTP =================
+export const forgotPassword = async (email) => {
+  const { data } = await API.post("/forgot-password", { email });
+  return data;
+};
+
+// ================= VERIFY OTP =================
+export const verifyOTP = async (email, otp) => {
+  const { data } = await API.post("/verify-otp", {
+    email,
+    otp,
+  });
+  return data;
+};
+
+// ================= RESET PASSWORD =================
+// export const resetPassword = async (email, newPassword) => {
+//   const { data } = await API.post("/reset-password", {
+//     email,
+//     newPassword,
+//   });
+//   return data;
+// };
+
+// ================= RESET PASSWORD =================
+export const resetPassword = async (email, otp, newPassword) => {
+  const { data } = await API.post("/reset-password", { email, otp, newPassword });
+  return data;
 };

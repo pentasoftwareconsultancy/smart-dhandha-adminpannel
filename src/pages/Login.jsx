@@ -129,7 +129,14 @@ const Login = () => {
             {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
-
+<p className="mt-2 text-right text-sm">
+  <a
+  href="/forgotpassword"
+  className="text-[#0173AE] hover:underline"
+>
+  Forgot Password?
+</a>
+</p>
         {/* Extra Link */}
         <p className="mt-4 text-center text-xs text-gray-500">
           Don’t have an account?{" "}
